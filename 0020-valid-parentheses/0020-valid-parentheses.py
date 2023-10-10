@@ -8,12 +8,12 @@ class Solution(object):
         stack = []
         if len(s) % 2 != 0:
             return False
-        for c in range(len(s)):
-            if s[c] in ('[', '(', '{'):
-                stack.append(s[c])
+        for c in s:
+            if c in ('[', '(', '{'):
+                stack.append(c)
             else:
-                if s[c] in closeToOpen:
-                    if stack and stack[-1] == closeToOpen[s[c]]:
+                if c in closeToOpen:
+                    if stack and stack[-1] == closeToOpen[c]:
                         stack.pop()
                     else:
                         return False
