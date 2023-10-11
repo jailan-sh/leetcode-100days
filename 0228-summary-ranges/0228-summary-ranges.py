@@ -4,21 +4,25 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[str]
         """
-        result = []
-        if nums == []:
+        if not nums:
             return []
-        else:
-            start = nums[0]
+
+        ranges = []
+        start = end = nums[0]
+
         for i in range(1, len(nums)):
-            if nums[i] != nums[i - 1] + 1:
-                if start == nums[i - 1]:
-                    result.append(str(start))
-                else:
-                    result.append(str(start) + "->" + str(nums[i - 1]))
-                start = nums[i]
-        if start == nums[-1]:
-            result.append(str(start))
+            if nums[i] == end + 1:
+                end = nums[i]
+            else:
+                ranges.append(self.formatRange(start, end))
+                start = end = nums[i]
+
+        ranges.append(self.formatRange(start, end))
+        return ranges
+
+    def formatRange(self, start, end):
+        if start == end:
+            return str(start)
         else:
-            result.append(str(start) + "->" + str(nums[-1])) 
-        return result
+            return str(start) + "->" + str(end)
             
