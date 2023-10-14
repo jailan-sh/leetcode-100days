@@ -6,10 +6,11 @@ class Solution(object):
         """
         stack = []
         answer = [0] * len(temperatures)
-        for index, value in enumerate(temperatures):
-            while stack and value > stack[-1][1]:
-                i_result = stack.pop()[0]
-                answer[i_result] = index - i_result
-            stack.append((index,value))
+        for i in range(len(temperatures)):
+            while stack and temperatures [i] > temperatures[stack[-1]]:
+                prev_index = stack.pop()
+                days = i - prev_index
+                answer[prev_index] = days
+            stack.append(i)
         return answer
 
