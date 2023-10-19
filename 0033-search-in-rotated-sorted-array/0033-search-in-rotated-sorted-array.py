@@ -7,20 +7,15 @@ class Solution(object):
         """
         n = len(nums)
         left, right = 0, n - 1
-        if n == 0: return -1
-        
+        if n == 0: return -1      
         while left <= right:
             mid = left + (right - left) // 2
             if nums[mid] == target: return mid
-            
-            # inflection point to the right. Left is strictly increasing
             if nums[mid] >= nums[left]:
                 if nums[left] <= target < nums[mid]:
                     right = mid - 1
                 else:
-                    left = mid + 1
-                    
-            # inflection point to the left of me. Right is strictly increasing
+                    left = mid + 1  
             else:
                 if nums[mid] < target <= nums[right]:
                     left = mid + 1
