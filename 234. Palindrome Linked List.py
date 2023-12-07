@@ -14,6 +14,7 @@ class Solution(object):
         while temp:
             stack.append(temp.val)
             temp = temp.next
+        #return stack == stack[::-1]
         while head:
             if head.val == stack[-1]:
                 stack.pop()
